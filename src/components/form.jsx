@@ -1,9 +1,11 @@
 import { useState } from "react"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 
 export const Form = ()=>{
     const [email,setEmail]=useState('')
     const [password,setPassword] = useState('')
     const [user,setUser]=useState([])
+    const navigate = useNavigate()
 
     const submitForm = (e)=>{   
         e.preventDefault()
@@ -11,6 +13,11 @@ export const Form = ()=>{
 
         setUser([...user, newUser])
         console.log(user)
+
+ 
+        
+        navigate('/home')
+                
     }
 
     return(
@@ -33,11 +40,12 @@ export const Form = ()=>{
         <div>
             {
                 user.map((item)=>{
-                    return<div>
-                        
+                    return(
+                    <div key={item.email}>    
                     <p>{item.email}</p>
                     <p>{item.password}</p>
                     </div>
+                    )
                 })
             }
         </div>
